@@ -1,5 +1,5 @@
 import express from 'express'
-const searchController = require('./searchController')
+import searchController from './searchController'
 
 const router = express.Router()
 
