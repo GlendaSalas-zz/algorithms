@@ -40,3 +40,16 @@ Most implementations produce a stable sort, which means that the order of equal 
 | Name     |      Type     | Required |  Description                  |
 |----------|:-------------:|------:   |--------------------:          |
 |  list    |  Array        |   ✔     | List of numbers                |
+# Tasks
+You are given two sorted array, a and b, where a has a large enought buffer at the end to hold b, write a method to merge B into a in sorted order.
+## Sorted merged
+### BODY PARAMETERS
+| Name     |      Type     | Required |  Description                  |
+|----------|:-------------:|------:   |--------------------:          |
+|  A       |  Array        |   ✔     | List of numbers with undefined spaces  |
+|  B       |  Array        |   ✔     | List of numbers                |
+### Example of body parameters
+`{
+	"A" : [10, 12, 13,14,18, "undefined", "undefined", "undefined",  "undefined", "undefined"],
+	"B" : [16, 17, 19, 20, 22]
+}`
