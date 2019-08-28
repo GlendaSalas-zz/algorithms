@@ -24,3 +24,51 @@ exports.sortedMerge = async (req, res) => {
 		return res.status(500).send(errorGenerate(500, e.message))
 	}
 }
+exports.longestComon = async (req, res) => {
+	try {
+		const { A, B } = req.body
+		if (!A) return res.status(406).send(errorGenerate(406, 'A is required.'))
+		if (!B) return res.status(406).send(errorGenerate(406, 'B is required.'))
+	
+		let lens1 = A.length
+		let lens2 = B.length
+		if(lens1!=lens2) return res.status(406).send(errorGenerate(406, 'A & B needs to be the same length.'))
+		let array = Array(lens2+1).fill().map(() => Array(lens2+1).fill(0))
+		for(let i=0; i<= lens1; i++){
+			for(let j=0; j<= lens2; j++){
+				if(i==0 || j==0){
+					array[i][j]=0
+				} else if(A[i-1]== B[j-1]){
+					array[i][j] = array[i-1][j-1]+1
+				} else {
+					array[i][j] = Math.max(array[i-1][j], array[i][j-1])
+				}
+			}
+		}
+		let index = array[lens1][lens2] 
+		let temp = index
+		let lcs = Array(temp).fill().map(() => Array(lens2).fill(0))
+		lcs[index] = ''; // Set the terminating characte
+		let i = lens1
+		let j = lens2
+		while (i>0 && j>0){
+			if(A[i-1]== B[j-1]){
+				lcs[index-1] = A[i-1]
+				--i
+				--j
+				--index
+			}
+			else if(array[i - 1][j] > array[i][j - 1]){
+				--i
+			}else{
+				--j
+			}
+		}
+		const longestCommonS = lcs.toString().replace(/,/g, '.')
+		res.status(200).send(Object.assign({
+			Task: 'Function that takes two strings, A and B, and returns the largest common subsequences of s1 and s2'
+		}, errorGenerate(200, `${longestCommonS.replace('.', '').replace('.', '')}`))	)
+	} catch (e) {
+		return res.status(500).send(errorGenerate(500, e.message))
+	}
+}
