@@ -72,3 +72,48 @@ exports.longestComon = async (req, res) => {
 		return res.status(500).send(errorGenerate(500, e.message))
 	}
 }
+
+exports.fibonacciIterative = async (req, res) => {
+	try {
+		let { n } = req.body
+		if (!n) return res.status(406).send(errorGenerate(406, 'The n number is required.'))
+		if(n==0) return 0
+		if(n==1) return 1
+		let sum = 0
+		let stack  =  []
+		stack.push(n)
+		while(stack.length > 0){
+			n = stack.pop()
+			if(n==0) {
+				sum += 0
+			}
+			else if(n==1) {
+				sum += 1
+			} else {
+				stack.push(n-1)
+				stack.push(n-2)
+			}
+		}
+		res.status(200).send(Object.assign({
+			Task: 'Fibonaci iterative js'
+		}, errorGenerate(200, `${sum}`))	)
+	} catch (e) {
+		return res.status(500).send(errorGenerate(500, e.message))
+	}
+}
+function fibonacci(n) {
+	if(n==0) return 0
+	if(n==1) return 1
+	return fibonacci(n-1) + fibonacci(n-2)
+}
+exports.fibonacciRecursive = async (req, res) => {
+	try {
+		const { n } = req.body
+		if (!n) return res.status(406).send(errorGenerate(406, 'The n number is required.'))
+		res.status(200).send(Object.assign({
+			Task: 'Fibonacci recursive js'
+		}, errorGenerate(200, `${fibonacci(n)}`))	)
+	} catch (e) {
+		return res.status(500).send(errorGenerate(500, e.message))
+	}
+}

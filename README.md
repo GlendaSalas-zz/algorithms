@@ -13,7 +13,7 @@ Then run the project `npm run dev`
 ## Searching algoritms
 
 ### Binary Search
-Binary search works by comparing the target value to the middle element of the array. If the target value is greater than the middle element, the left half of the list is eliminated from the search space, and the search continues in the right half. If the target value is less than the middle value, the right half is eliminated from the search space, and the search continues in the left half. This process is repeated until the middle element is equal to the target value, or if the algorithm returns that the element is not in the list at all.
+Binary search works by comparing the target value to the middle element of the array. If the target value is greater than the middle element, the left half of the list is eliminated from the search space, and the search continues in the right half. If the target value is less than the middle value, the right half is eliminated from the search space, and the search continues in                  the left half. This process is repeated until the middle element is equal to the target value, or if the algorithm returns that the element is not in the list at all.
 
 *A limitation of binary search is that it can only search in a pre-sorted list. If the list is not pre-sorted, binary search will not work.*
 
@@ -49,6 +49,7 @@ Most implementations produce a stable sort, which means that the order of equal 
 
 ### Sorted merged
 You are given two sorted array, a and b, where a has a large enought buffer at the end to hold b, write a method to merge B into a in sorted order.
+* The endpoint is `/task/sorted-merge`
 #### BODY PARAMETERS
 | Name     |      Type     | Required |  Description                  |
 |----------|:-------------:|------:   |--------------------:          |
@@ -63,6 +64,7 @@ You are given two sorted array, a and b, where a has a large enought buffer at t
 ```
 ### Longest common subsequence
 Write a function that takes two strings, A and B, and returns the largest common subsequences of s1 and s2
+* The endpoint is `/task/longest-common-sequence`
 #### BODY PARAMETERS
 | Name     |      Type     | Required |  Description                  |
 |----------|:-------------:|------:   |--------------------:          |
@@ -77,3 +79,21 @@ Write a function that takes two strings, A and B, and returns the largest common
 }
 ```
 The result will be => **ABAD**
+
+### Fibonacci
+Fibonaci function
+* The endpoint for the implementation of recursive is `/task/fibonacci-recursive`
+* The endpoint for the implementation of iterative is `/task/fibonacci-iterative`
+
+#### BODY PARAMETERS
+| Name     |      Type     | Required |  Description                  |
+|----------|:-------------:|------:   |--------------------:          |
+|  n       |  String        |   ✔     | It need to be a number, a not long because de bigO  |
+
+#### Example of body parameters
+```json
+{
+	"n" : '15',
+}
+```
+The result will be => **610**
