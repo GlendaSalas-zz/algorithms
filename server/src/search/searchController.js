@@ -1,4 +1,5 @@
 import { errorGenerate } from './../handlers/errorHandlers'
+import { Node } from './../utils/dfs'
 exports.binarySearch = async (req, res) => {
 	try {
 		const { list } = req.body
@@ -41,3 +42,22 @@ exports.binarySearchR = async (req, res) => {
 		return res.status(500).send(errorGenerate(500, e.message))
 	}
 }
+exports.depthFirstSearch = async (req, res) => {
+	try {
+		const { N } = req.body	
+		if (!N) return res.status(406).send(errorGenerate(406, 'The N value is required.'))
+		const a = new Node('a')
+		const b = new Node('b')
+		const c = new Node('c')
+		const d = new Node('d')
+		const e = new Node('e')
+		const f = new Node('f')
+		a.children = [b, c, d]
+		b.children = [e, f]
+		const result = a.preorder('e')
+		return res.status(200).send(Object.assign({ three: a },errorGenerate(200, `The ${N} value is ${result} in the three`)))
+	} catch (e) {
+		return res.status(500).send(errorGenerate(500, e.message))
+	}
+}
+
