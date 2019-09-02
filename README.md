@@ -97,3 +97,19 @@ Fibonaci function
 }
 ```
 The result will be => **610**
+### Sink island
+The 1's are islands and the 0's are water, find the number of islands
+* The endpoint for the implementation is `/task/sinkIslands`
+
+#### BODY PARAMETERS
+| Name     |      Type     | Required |  Description                  |
+|----------|:-------------:|------:   |--------------------:          |
+|  grid    |  Array[Array] |   ✔     | The grid is an array of array of the islands and water  |
+
+#### Example of body parameters
+```json
+{
+	"grid" : [[1, 1, 1, 1, 0], [1, 1, 0, 1, 0], [1, 1, 0, 0, 0], [0, 0, 1, 0, 1]]
+}
+```
+The result will be => **3**

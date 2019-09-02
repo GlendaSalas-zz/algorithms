@@ -1,4 +1,5 @@
 import { errorGenerate } from './../handlers/errorHandlers'
+import SolutionSink from './../utils/sinkIslands'
 exports.sortedMerge = async (req, res) => {
 	try {
 		const { A, B } = req.body
@@ -113,6 +114,28 @@ exports.fibonacciRecursive = async (req, res) => {
 		res.status(200).send(Object.assign({
 			Task: 'Fibonacci recursive js'
 		}, errorGenerate(200, `${fibonacci(n)}`))	)
+	} catch (e) {
+		return res.status(500).send(errorGenerate(500, e.message))
+	}
+}
+exports.sinkIslands= async (req, res) => {
+	try {
+		const { grid } = req.body
+		if (!grid || grid.length<=0) return res.status(406).send(errorGenerate(406, 'The Islands are required.'))
+		let counter = 0
+		const c = new SolutionSink()
+		for(let i=0; i < grid.length; i++){
+			for (let j=0; j < grid[0].length; j++) {
+				if(grid[i][j]==1){
+					counter += 1
+					c.sinkIland(grid, i, j)
+				}
+			}
+		}
+		res.status(200).send(Object.assign({
+			Grid: grid,
+			Task: 'The 1\'s are islands and the 0\'s are water, find the number of islands'
+		}, errorGenerate(200, `The total of islands are ${counter}`))	)
 	} catch (e) {
 		return res.status(500).send(errorGenerate(500, e.message))
 	}
