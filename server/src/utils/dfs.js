@@ -16,4 +16,4 @@ class Node {
 		return false
 	}
 }
-module.exports = { Node }
+export default { Node }

@@ -45,6 +45,20 @@ Most implementations produce a stable sort, which means that the order of equal 
 | Name     |      Type     | Required |  Description                  |
 |----------|:-------------:|------:   |--------------------:          |
 |  list    |  Array        |   ✔     | List of numbers                |
+
+### Quick sort
+1. Pick a pivot. 
+2. Partition the array into two sub-arrays: elements less than the pivot and elements greater than the pivot.
+3. Call quicksort recursively on the two sub-arrays. 
+
+**BigO O(n log n). Better than merge sort**
+* The endpoint for the implementation of the sorting is `/sort/quick-sort`
+#### BODY PARAMETERS
+| Name     |      Type     | Required |  Description                  |
+|----------|:-------------:|------:   |--------------------:          |
+|  list    |  Array        |   ✔     | List of numbers                |
+
+
 ## Tasks
 
 ### Sorted merged
@@ -62,6 +76,10 @@ You are given two sorted array, a and b, where a has a large enought buffer at t
 	"B" : [16, 17, 19, 20, 22]
 }
 ```
+
+
+
+
 ### Longest common subsequence
 Write a function that takes two strings, A and B, and returns the largest common subsequences of s1 and s2
 * The endpoint is `/task/longest-common-sequence`
