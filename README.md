@@ -76,8 +76,37 @@ You are given two sorted array, a and b, where a has a large enought buffer at t
 	"B" : [16, 17, 19, 20, 22]
 }
 ```
-
-
+### MANGO SELLER SHORTEST PATH
+Fin the shortest path for a graph of friends to a mango seller that the name starts with x letter
+* The endpoint is `/task/shortest-path-seller`
+#### BODY PARAMETERS
+| Name     |      Type     | Required |  Description                  |
+|----------|:-------------:|------:   |--------------------:          |
+|  myFriends|  Array        |   ✔     | Array of friends  |
+|  friends  |  Array        |   ✔     | Object of arrays  |
+|  mango    |  String       |   ✔     | The persons's name starts with that letter    |
+#### Example of body parameters
+```json
+{
+	"myFriends" : ["lola", "pancho", "juan"],
+	"friends" :{
+		"lola":["juancho", "Paco", "rebeca"],
+		"juan" : ["rosa"]
+	},
+	"mango" : "r"
+}
+```
+#### Example of response
+``` json
+ {
+    "network": "rebeca is a seller",
+    "task": "Find in the network of your friends the mango seller",
+    "code": 200,
+    "message": "OK",
+    "details": "The request has succeeded.",
+    "description": "The mango seller with the shortest path r"
+}
+```
 
 
 ### Longest common subsequence
@@ -92,8 +121,8 @@ Write a function that takes two strings, A and B, and returns the largest common
 #### Example of body parameters
 ```json
 {
-	"A" : 'ABAZDC',
-	"B" : 'BACBAD'
+	"A" : "ABAZDC",
+	"B" : "BACBAD"
 }
 ```
 The result will be => **ABAD**
@@ -111,7 +140,7 @@ Fibonaci function
 #### Example of body parameters
 ```json
 {
-	"n" : '15',
+	"n" : "15",
 }
 ```
 The result will be => **610**
