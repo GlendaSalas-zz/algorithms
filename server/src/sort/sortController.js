@@ -1,5 +1,6 @@
 import { errorGenerate } from './../handlers/errorHandlers'
 import quickSort from './../utils/qs'
+import selectionSort from './../utils/selectionSort'
 exports.insertionSort = async (req, res) => {
 	try {
 		const { list } = req.body
@@ -73,6 +74,16 @@ exports.quickSort = async (req, res) => {
 		const { list } = req.body
 		if (!list) return res.status(406).send(errorGenerate(406, 'The list is required.'))
 		const result = await quickSort(list)
+		res.status(200).send(errorGenerate(200, `${JSON.stringify(result)} was sort.`))	
+	} catch (e) {
+		return res.status(500).send(errorGenerate(500, e.message))
+	}
+}
+exports.selectionSort = async (req, res) => {
+	try {
+		const { list } = req.body
+		if (!list) return res.status(406).send(errorGenerate(406, 'The list is required.'))
+		const result = await selectionSort(list)
 		res.status(200).send(errorGenerate(200, `${JSON.stringify(result)} was sort.`))	
 	} catch (e) {
 		return res.status(500).send(errorGenerate(500, e.message))

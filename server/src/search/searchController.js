@@ -10,8 +10,9 @@ exports.binarySearch = async (req, res) => {
 		let midpoint
 		while(first<=last){
 			midpoint = parseInt((first+last)/2)
-			if(list[midpoint]=== target) return res.status(200).send(errorGenerate(200, `${target} is in the list`))
-			if(target < list[midpoint]){
+			let guess = list[midpoint]
+			if (guess === target) return res.status(200).send(errorGenerate(200, `${target} is in the list`))
+			if (guess > target){
 				last = midpoint - 1
 			} else {
 				first = midpoint + 1

@@ -58,6 +58,17 @@ Most implementations produce a stable sort, which means that the order of equal 
 |----------|:-------------:|------:   |--------------------:          |
 |  list    |  Array        |   ✔     | List of numbers                |
 
+### Selection sort
+Selection sort is a neat algorithm but it's not very fast. Takes O(n^2)
+
+
+**BigO O(n^2). Slow**
+* The endpoint for the implementation of the sorting is `/sort/selection-sort`
+#### BODY PARAMETERS
+| Name     |      Type     | Required |  Description                  |
+|----------|:-------------:|------:   |--------------------:          |
+|  list    |  Array        |   ✔     | List of numbers                |
+
 
 ## Tasks
 
