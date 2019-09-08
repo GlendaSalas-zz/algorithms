@@ -118,7 +118,7 @@ exports.fibonacciRecursive = async (req, res) => {
 		return res.status(500).send(errorGenerate(500, e.message))
 	}
 }
-exports.sinkIslands= async (req, res) => {
+exports.sinkIslands = async (req, res) => {
 	try {
 		const { grid } = req.body
 		if (!grid || grid.length<=0) return res.status(406).send(errorGenerate(406, 'The Islands are required.'))
@@ -139,4 +139,48 @@ exports.sinkIslands= async (req, res) => {
 	} catch (e) {
 		return res.status(500).send(errorGenerate(500, e.message))
 	}
+}
+exports.shortestPathSeller = async (req, res) => {
+	try {
+		const mango = req.body.mango || 'P'
+		const { myFriends } = req.body 
+		const { friends }  = req.body 
+		if (!myFriends || !friends) return res.status(406).send(errorGenerate(406, 'Needs some friends.'))
+		var queue = {}
+		queue.you = myFriends
+		for (let i = 0; i < myFriends.length; i++){
+			if (friends[myFriends[i]]) queue[myFriends[i]] = friends[myFriends[i]]
+		}
+		const r = await searchName(queue, 'you', mango)
+		res.status(200).send(Object.assign({
+			network: r,
+			task: 'Find in the network of your friends the mango seller'
+		}, errorGenerate(200, `The mango seller with the shortest path ${mango}`))	)
+	} catch (e) {
+		return res.status(500).send(errorGenerate(500, e.message))
+	}
+}
+function searchName(queue, name, startWith){
+	let search_queue = queue[name]
+	let searched = []
+	while(search_queue.length>0){
+		let person = search_queue.shift()
+		if(!searched[person]) {
+			if(person_is_seller(person, startWith)){
+				return `${person} is a seller`
+			}else {
+				if(queue[person]){
+					search_queue = search_queue.concat(queue[person])
+					if(search_queue.length==0 && queue[person]) {
+						search_queue = queue[person]
+					}
+				}
+				searched.push(person)
+			}
+		}
+	}
+	return `You don't have any mango seller in ur network that starts with ${startWith}`
+}
+function person_is_seller(name, startWith){
+	return name.charAt(0) == startWith.charAt(0)
 }
